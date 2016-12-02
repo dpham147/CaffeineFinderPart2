@@ -73,6 +73,7 @@ public class CaffeineListActivity extends AppCompatActivity
                     .addApi(LocationServices.API)
                     .build();
         }
+        mGoogleApiClient.connect();
 
         // Define the interval for updates
         mLocationRequest = LocationRequest.create()
