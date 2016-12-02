@@ -125,6 +125,12 @@ public class CaffeineListActivity extends AppCompatActivity
         currentLocation = location;
         // Add special marker (blue) for "my" location
         //MBCC Building Lat/Lng (MBCC 135)  33.671028, -117.911305
+
+        // Add normal markers for all caffeine locations
+        for (CaffeineLocation caffeineLocation : mAllLocationsList) {
+            LatLng coordinate = new LatLng(caffeineLocation.getLatitude(), caffeineLocation.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(coordinate).title(caffeineLocation.getName()));
+        }
         LatLng myCoordinate = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         mMap.addMarker(new MarkerOptions()
                 .position(myCoordinate)
@@ -134,11 +140,8 @@ public class CaffeineListActivity extends AppCompatActivity
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         mMap.moveCamera(cameraUpdate);
 
-        // Add normal markers for all caffeine locations
-        for (CaffeineLocation caffeineLocation : mAllLocationsList) {
-            LatLng coordinate = new LatLng(caffeineLocation.getLatitude(), caffeineLocation.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coordinate).title(caffeineLocation.getName()));
-        }
+
+
     }
 
     public void findClosestCaffeine(View view)
